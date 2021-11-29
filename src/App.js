@@ -1,15 +1,31 @@
 import React from 'react';
+import Input from './Form/Input';
+import Button from './Form/Button';
 import Radio from './Form/Radio';
+import useForm from './Hooks/useForm';
+import Teleporte from './Assets/teleporte.png';
+import Steampunk from './Assets/steampunk.png';
+import Carro from './Assets/carro.png';
+import Cao from './Assets/cao-robo.png';
+import Adn from './Assets/adn.png';
+import Foguete from './Assets/foguete.png';
+import Sabre from './Assets/sabre-de-luz.png';
+import Universo from './Assets/universoacademy.png';
+import './App.css';
 
 const perguntas = [
   {
-    pergunta: 'Pergunta 1',
+    pergunta: 'Sempre analiso os dados de forma minuciosa antes de tomar uma decisão.',
     options: [
       'Discordo totalmente',
       'Discordo parcialmente',
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Conhecimento',
+      img: Teleporte,
+    },
     id: 'p1',
   },
   {
@@ -20,6 +36,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Conhecimento',
+      img: Teleporte,
+    },
     id: 'p2',
   },
   {
@@ -30,6 +50,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Conhecimento',
+      img: Teleporte,
+    },
     id: 'p3',
   },
   {
@@ -40,6 +64,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Paixão',
+      img: Steampunk,
+    },
     id: 'p4',
   },
   {
@@ -50,6 +78,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Paixão',
+      img: Steampunk,
+    },
     id: 'p5',
   },
   {
@@ -60,6 +92,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Paixão',
+      img: Steampunk,
+    },
     id: 'p6',
   },
   {
@@ -70,6 +106,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Credibilidade',
+      img: Carro,
+    },
     id: 'p7',
   },
   {
@@ -80,6 +120,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Credibilidade',
+      img: Carro,
+    },
     id: 'p8',
   },
   {
@@ -90,6 +134,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Credibilidade',
+      img: Carro,
+    },
     id: 'p9',
   },
   {
@@ -100,6 +148,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Lealdade',
+      img: Cao,
+    },
     id: 'p10',
   },
   {
@@ -110,6 +162,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Lealdade',
+      img: Cao,
+    },
     id: 'p11',
   },
   {
@@ -120,6 +176,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Lealdade',
+      img: Cao,
+    },
     id: 'p12',
   },
   {
@@ -130,6 +190,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Determinação',
+      img: Adn,
+    },
     id: 'p13',
   },
   {
@@ -140,6 +204,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Determinação',
+      img: Adn,
+    },
     id: 'p14',
   },
   {
@@ -150,6 +218,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Determinação',
+      img: Adn,
+    },
     id: 'p15',
   },
   {
@@ -160,6 +232,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Gestão',
+      img: Foguete,
+    },
     id: 'p16',
   },
   {
@@ -170,6 +246,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Gestão',
+      img: Foguete,
+    },
     id: 'p17',
   },
   {
@@ -180,6 +260,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Gestão',
+      img: Foguete,
+    },
     id: 'p18',
   },
   {
@@ -190,6 +274,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Propósito',
+      img: Sabre,
+    },
     id: 'p19',
   },
   {
@@ -200,6 +288,10 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Propósito',
+      img: Sabre,
+    },
     id: 'p20',
   },
   {
@@ -210,11 +302,37 @@ const perguntas = [
       'Concordo parcialmente',
       'Concordo totalmente',
     ],
+    categoria: {
+      nome: 'Propósito',
+      img: Sabre,
+    },
     id: 'p21',
   },
 ];
 
+function animeScroll() {
+  const target = document.querySelectorAll('[data-anime]');
+  const animationClass = 'animate';
+  const windowTop = window.pageYOffset + ((window.innerHeight * 3) / 4);
+  target.forEach(element => {
+      if (windowTop > element.offsetTop) {
+          element.classList.add(animationClass);
+      } else if(element.classList.contains(animationClass)) {
+          element.classList.remove(animationClass);
+      }
+  })
+}
+
+animeScroll();
+
 const App = () => {
+  const firstName = useForm('');
+  const phone = useForm('');
+  const email = useForm('email');
+
+  const [leadStatus, setLeadStatus] = React.useState(false);
+  const [finish, setFinish] = React.useState(false);
+
   const [respostas, setRespostas] = React.useState({
     p1: 0,
     p2: 0,
@@ -247,7 +365,62 @@ const App = () => {
   const [gestao, setGestao] = React.useState(0);
   const [proposito, setProposito] = React.useState(0);
 
-  console.log(conhecimento, paixao, credibilidade, lealdade, determinacao, gestao, proposito)
+  const [media, setMedia] = React.useState(0);
+
+  const mediaResultado = [conhecimento, paixao, credibilidade, lealdade, determinacao, gestao, proposito];
+
+  function somar() {
+    let soma = 0
+    for(let i in mediaResultado) {
+      soma += mediaResultado[i]
+    }
+    return soma
+  }
+
+  const categorias = [
+    {
+      nome: 'Conhecimento',
+      img: Teleporte,
+      descricao: 'Você não busca entender a realidade em que seu negócio está, muito menos embasar sua decisão em dados. Isso será extremamente prejudicial para qualquer ação da sua empresa, podendo colocar tudo o que você tem e construiu até hoje em jogo.',
+      pontos: conhecimento,
+    },
+    {
+      nome: 'Paixão',
+      img: Steampunk,
+      descricao: 'A sua falta de paixão e engajamento com certeza atrapalha a sua ação de liderança, podendo até trazer apatia e falta de entusiasmo dentro da sua equipe. São dois comportamentos altamente pecaminosos no que diz respeito a execução.',
+      pontos: paixao,
+    },
+    {
+      nome: 'Credibilidade',
+      img: Carro,
+      descricao: 'Você não possui as principais características das grandes lideranças. Não viver o que defende, não cumprir o que promete e não ter a confiança da equipe são sem dúvida as piores características de um líder.',
+      pontos: credibilidade,
+    },
+    {
+      nome: 'Lealdade',
+      img: Cao,
+      descricao: 'Você não possui a prática da lealdade, ou seja, você não tem princípios inegociáveis que regem a sua conduta. Dessa forma sua conduta é leviana e variável de acordo com a situação, tendo assim uma total desconfiança da sua equipe.',
+      pontos: lealdade,
+    },
+    {
+      nome: 'Determinação',
+      img: Adn,
+      descricao: 'Você não possui o comprometimento com aquilo que se determina a fazer, as pessoas da sua equipe já percebem e sabem que as suas promessas e objetivos não vão ser prioridades no cumprimento das ações do dia a dia. Você pode ser conhecido como a pessoa que promete mais do que faz e para no meio do caminho.',
+      pontos: determinacao,
+    },
+    {
+      nome: 'Gestão',
+      img: Foguete,
+      descricao: 'A sua falta de foco na gestão do negócio o andamento de uma rotina de planejamento execução e análise de resultados, liderar um negócio sem a rotina de gestão coloca todos os seus aspectos de liderança em check, promovendo fracassos pelo menos em médio ou longo prazo.',
+      pontos: gestao,
+    },
+    {
+      nome: 'Propósito',
+      img: Sabre,
+      descricao: 'Você não tem um propósito claro e objetivo que faz você e as pessoas que você lidera entregarem um resultado extraordinário. Você não possui uma visão além do trabalho a ser realizado, você entende o trabalho como trabalho e não consegue perceber os resultados extraordinários que podem ser causados em sua vida e na vida de outras pessoas.',
+      pontos: proposito,
+    }
+  ]
 
   const [slide, setSlide] = React.useState(0);
 
@@ -265,6 +438,11 @@ const App = () => {
 
   function handleChange({ target }) {
     setRespostas({ ...respostas, [target.id]: handleRespostas(target.value) });
+    const radios = document.querySelectorAll('.radio');
+    radios.forEach((radio) => {
+      radio.checked = false;
+    })
+    target.checked = true;
   }
 
   function handleClick({target}) {
@@ -299,23 +477,92 @@ const App = () => {
       setDeterminacao(determinacaoArray.reduce(reducer));
       setGestao(gestaoArray.reduce(reducer));
       setProposito(propositoArray.reduce(reducer));
+      setLeadStatus(false);
+      setFinish(true);
+    }
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLeadStatus(true);
+    if (email.validate()) {
+        // Yeh!
+        let fetchData = {
+            method: 'POST',
+            body: JSON.stringify({ firstName: firstName.value, phone: phone.value, email: email.value, js: true }),
+            headers: {"Content-Type": "application/json"}
+        }
+        fetch('/subscribe', fetchData)
+            .then(res => {
+                if (res.ok) {
+                    // setLeadStatus(true);
+                }
+        })
     }
   }
 
   return (
-    <form onSubmit={(event) => event.preventDefault()}>
-      {perguntas.map((pergunta, index) => (
-        <Radio
-          active={slide === index}
-          key={pergunta.id}
-          value={respostas[pergunta.id]}
-          onChange={handleChange}
-          {...pergunta}
-        />
-      ))}
-        <button onClick={handleClick}>Próxima</button>
-        <button onClick={handleClick}>Anterior</button>
-    </form>
+    <>
+    <img className='logo' src={Universo}></img>
+    <div className='pergunta-box animate' data-anime='left'>
+      <div className={finish ? 'inicio finish' : 'inicio'} style={leadStatus ? {'display': 'none'} : {'display': 'flex'}}>
+        <div className='inicio-text'>
+          <h2>Teste de liderança</h2>
+          <p>Bem vindo ao teste de liderança da Universo Academy! O conceito desse teste é bem simples: te avaliar se você é um bom líder.
+          <br></br>
+          <br></br>
+          Seja autocrítico para responder as perguntas. No final te daremos uma nota. Para começar, preencha o formulário ao lado.
+          </p>
+        </div>
+        <form action='' onSubmit={handleSubmit}>
+          <Input type='text' label='Nome' name='firstName' id='first-name' {...firstName} />
+          <Input type='tel' label='Telefone' name='phone' id='phone' {...phone} />
+          <Input type='email' label='E-mail' name='email' id='email' {...email} />
+          <Button>Começar!</Button>
+        </form>
+      </div>
+      <div className={finish ? 'navegacao finish' : 'navegacao'} style={leadStatus ? {'display': 'flex'} : {'display': 'none'}}>
+        {perguntas.map((pergunta, index) => (
+          <Radio
+            active={slide === index}
+            key={pergunta.id}
+            value={respostas[pergunta.id]}
+            onChange={handleChange}
+            {...pergunta}
+          />
+        ))}
+        <div className='categoria'>
+          <h2>Categoria</h2>
+          <img src={perguntas[slide].categoria.img}></img>
+          <p>{perguntas[slide].categoria.nome}</p>
+        </div>    
+      </div>
+      <nav className={finish ? 'navegacao finish' : 'navegacao'} style={leadStatus ? {'display': 'flex'} : {'display': 'none'}}>
+        <button className='cta' onClick={handleClick}>Anterior</button>
+        <button className='cta' onClick={handleClick}>Próxima</button>
+      </nav>
+      <div className='resultado animate' style={finish ? {'display': 'block'} : {'display': 'none'}} data-anime='left'>
+          <h2>Teste finalizado</h2>
+          <p>A sua média final foi: <span className='media'>{Math.round(somar()/mediaResultado.length)}</span></p>
+          <ul>
+            {categorias.map((categoria) => (
+              <li className='categoria-item'>
+                <div className='categoria-header'>
+                  <div>
+                    <img src={categoria.img}></img>
+                  </div>
+                  <div className='categoria-resultado'>
+                    <p>{categoria.pontos}</p>
+                    <h3>{categoria.nome}</h3>
+                  </div>
+                </div>
+                <p>{categoria.descricao}</p>
+              </li>
+            ))}
+          </ul>
+      </div>
+    </div>
+    </>
   );
 };
 
