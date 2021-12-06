@@ -511,13 +511,13 @@ const App = () => {
           <p>Bem vindo ao teste de liderança da Universo Academy! O conceito desse teste é bem simples: te avaliar se você é um bom líder.
           <br></br>
           <br></br>
-          Seja autocrítico para responder as perguntas. No final te daremos uma nota. Para começar, preencha o formulário ao lado.
+          Seja autocrítico para responder as perguntas. No final te daremos uma nota. Para começar, nos diga qual é o seu nome.
           </p>
         </div>
         <form action='' onSubmit={handleSubmit}>
-          <Input type='text' label='Nome' name='firstName' id='first-name' {...firstName} />
-          <Input type='tel' label='Telefone' name='phone' id='phone' {...phone} />
-          <Input type='email' label='E-mail' name='email' id='email' {...email} />
+          <Input type='text' label='O meu nome é:' name='firstName' id='first-name' {...firstName} />
+          {/* <Input type='tel' label='Telefone' name='phone' id='phone' {...phone} />
+          <Input type='email' label='E-mail' name='email' id='email' {...email} /> */}
           <Button>Começar!</Button>
         </form>
       </div>

@@ -30,7 +30,7 @@ app.post('/subscribe', (req, res) => {
         url: 'https://us20.api.mailchimp.com/3.0/lists/991b4de739',
         method: 'POST',
         headers: {
-            Authorization: 'auth 8ab2a602aca0db3a23a855a917892e44-us20'
+            Authorization: 'auth 3ab0bf0efd5efec889ff541631de0633-us20'
         },
         body: chimpDataPost
     }
