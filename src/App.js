@@ -12,6 +12,8 @@ import Foguete from './Assets/foguete.png';
 import Sabre from './Assets/sabre-de-luz.png';
 import Universo from './Assets/universoacademy.png';
 import './App.css';
+import Chart from 'chart.js/auto';
+
 
 const perguntas = [
   {
@@ -505,6 +507,27 @@ const App = () => {
     }
   }
 
+  function get() {
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: 'rgba(0, 193, 240, .5)',
+              borderColor: '#00C1F0',
+              borderWidth: 4,
+          }]
+      },
+  });
+  }
+
+  React.useEffect(() => (
+    get()
+  ), [])
+
   return (
     <>
     <img className='logo' src={Universo}></img>
@@ -555,9 +578,16 @@ const App = () => {
           <Button>Ver Resultado</Button>
         </form>
       </div>
-      <div className='resultado animate' style={result ? {display: 'block'} : {display: 'none'}} data-anime='left'>
-          <h2>Teste finalizado</h2>
-          <p>A sua média final foi: <span className='media'>{Math.round(somar()/mediaResultado.length)}</span></p>
+      <div className='resultado animate' style={result ? {display: 'none'} : {display: 'block'}} data-anime='left'>
+        <div className='resultado-head'>
+          <div>
+            <h2>Teste finalizado</h2>
+            <p>A sua média final foi: <span className='media'>{Math.round(somar()/mediaResultado.length)}</span></p>
+          </div>
+          <div>
+          <canvas id="myChart"></canvas>
+          </div>
+        </div>
           <ul>
             {categorias.map((categoria) => (
               <li className='categoria-item'>

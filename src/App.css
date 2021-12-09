@@ -67,6 +67,18 @@ table {
 	--lineHeight10: 15px;
 }
 
+.resultado-head {
+    display: flex;
+}
+
+.resultado-head div:first-child {
+    width: 50%;
+}
+
+.resultado-head div:last-child {
+    width: 50%;
+}
+
 * {
     font-family: var(--fontMain) !important;
     box-sizing: border-box;
