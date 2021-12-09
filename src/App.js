@@ -330,8 +330,15 @@ const App = () => {
   const phone = useForm('');
   const email = useForm('email');
 
-  const [leadStatus, setLeadStatus] = React.useState(false);
+  // Form Management
+  const [start, setStart] = React.useState(false);
   const [finish, setFinish] = React.useState(false);
+  const [result, setResult] = React.useState(false);
+
+  function handleStart(e) {
+    e.preventDefault();
+    setStart(true);
+  }
 
   const [respostas, setRespostas] = React.useState({
     p1: 0,
@@ -364,8 +371,6 @@ const App = () => {
   const [determinacao, setDeterminacao] = React.useState(0);
   const [gestao, setGestao] = React.useState(0);
   const [proposito, setProposito] = React.useState(0);
-
-  const [media, setMedia] = React.useState(0);
 
   const mediaResultado = [conhecimento, paixao, credibilidade, lealdade, determinacao, gestao, proposito];
 
@@ -477,14 +482,13 @@ const App = () => {
       setDeterminacao(determinacaoArray.reduce(reducer));
       setGestao(gestaoArray.reduce(reducer));
       setProposito(propositoArray.reduce(reducer));
-      setLeadStatus(false);
+      setStart(false);
       setFinish(true);
     }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setLeadStatus(true);
     if (email.validate()) {
         // Yeh!
         let fetchData = {
@@ -495,7 +499,7 @@ const App = () => {
         fetch('/subscribe', fetchData)
             .then(res => {
                 if (res.ok) {
-                    // setLeadStatus(true);
+                    setResult(true);
                 }
         })
     }
@@ -505,8 +509,8 @@ const App = () => {
     <>
     <img className='logo' src={Universo}></img>
     <div className='pergunta-box animate' data-anime='left'>
-      <div className={finish ? 'inicio finish' : 'inicio'} style={leadStatus ? {'display': 'none'} : {'display': 'flex'}}>
-        <div className='inicio-text'>
+      <div className='inicio' style={start || finish ? {display: 'none'} : {display: 'flex'}}>
+        <div className='text'>
           <h2>Teste de liderança</h2>
           <p>Bem vindo ao teste de liderança da Universo Academy! O conceito desse teste é bem simples: te avaliar se você é um bom líder.
           <br></br>
@@ -514,14 +518,12 @@ const App = () => {
           Seja autocrítico para responder as perguntas. No final te daremos uma nota. Para começar, nos diga qual é o seu nome.
           </p>
         </div>
-        <form action='' onSubmit={handleSubmit}>
+        <form action=''>
           <Input type='text' label='O meu nome é:' name='firstName' id='first-name' {...firstName} />
-          {/* <Input type='tel' label='Telefone' name='phone' id='phone' {...phone} />
-          <Input type='email' label='E-mail' name='email' id='email' {...email} /> */}
-          <Button>Começar!</Button>
+          <Button onClick={handleStart}>Começar!</Button>
         </form>
       </div>
-      <div className={finish ? 'navegacao finish' : 'navegacao'} style={leadStatus ? {'display': 'flex'} : {'display': 'none'}}>
+      <div className='navegacao' style={start ? {display: 'flex'} : {display: 'none'}}>
         {perguntas.map((pergunta, index) => (
           <Radio
             active={slide === index}
@@ -537,11 +539,23 @@ const App = () => {
           <p>{perguntas[slide].categoria.nome}</p>
         </div>    
       </div>
-      <nav className={finish ? 'navegacao finish' : 'navegacao'} style={leadStatus ? {'display': 'flex'} : {'display': 'none'}}>
+      <nav className='navegacao' style={start ? {display: 'flex'} : {display: 'none'}}>
         <button className='cta' onClick={handleClick}>Anterior</button>
         <button className='cta' onClick={handleClick}>Próxima</button>
       </nav>
-      <div className='resultado animate' style={finish ? {'display': 'block'} : {'display': 'none'}} data-anime='left'>
+      <div className='lead' style={finish && !result ? {display: 'flex'} : {display: 'none'}}>
+        <div className='text'>
+          <h2><span>{firstName.value}</span>, obrigado por participar!</h2>
+          <p>Mas antes de mostrarmos o seu resultado, precisamos que você preencha alguns dados. Utilize o seu melhor número e endereço de e-mail que tem mais acesso.
+          </p>
+        </div>
+        <form action='' onSubmit={handleSubmit}>
+          <Input type='tel' label='Telefone' name='phone' id='phone' {...phone} />
+          <Input type='email' label='E-mail' name='email' id='email' {...email} />
+          <Button>Ver Resultado</Button>
+        </form>
+      </div>
+      <div className='resultado animate' style={result ? {display: 'block'} : {display: 'none'}} data-anime='left'>
           <h2>Teste finalizado</h2>
           <p>A sua média final foi: <span className='media'>{Math.round(somar()/mediaResultado.length)}</span></p>
           <ul>
