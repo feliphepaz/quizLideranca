@@ -531,7 +531,7 @@ const App = () => {
     <>
     <img className='logo' src={Universo}></img>
     <div className='pergunta-box animate' data-anime='left'>
-      <div className='inicio' style={start || finish ? {display: 'none'} : {display: 'flex'}}>
+      <div className='inicio' style={{display: 'none'}}>
         <div className='text'>
           <h2>Teste de liderança</h2>
           <p>Bem vindo ao teste de liderança da Universo Academy! O conceito desse teste é bem simples: te avaliar se você é um bom líder.
@@ -577,14 +577,15 @@ const App = () => {
           <Button>Ver Resultado</Button>
         </form>
       </div>
-      <div className='resultado animate' style={result ? {display: 'block'} : {display: 'none'}} data-anime='left'>
+      <div className='resultado animate' style={{display: 'block'}} data-anime='left'>
         <div className='resultado-head'>
           <div>
             <h2>Teste finalizado</h2>
             <p>A sua média final foi: <span className='media'>{Math.round(somar()/mediaResultado.length)}</span></p>
+            <div className=''>Tirou menos que 9? Conheça a <a href=''>Universo Academy</a>!</div>
           </div>
-          <div>
-          <canvas id="myChart"></canvas>
+          <div className='grafico'>
+            <canvas id="myChart"></canvas>
           </div>
         </div>
           <ul>
