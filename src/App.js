@@ -328,7 +328,7 @@ function animeScroll() {
 animeScroll();
 
 const App = () => {
-  const firstName = useForm('');
+  const firstName = useForm('name');
   const phone = useForm('');
   const email = useForm('email');
 
@@ -339,7 +339,9 @@ const App = () => {
 
   function handleStart(e) {
     e.preventDefault();
-    setStart(true);
+    if (firstName.validate()) {
+      setStart(true);
+    }
   }
 
   const [respostas, setRespostas] = React.useState({
@@ -502,6 +504,7 @@ const App = () => {
             .then(res => {
                 if (res.ok) {
                     setResult(true);
+                    get();
                 }
         })
     }
@@ -512,21 +515,17 @@ const App = () => {
     const myChart = new Chart(ctx, {
       type: 'radar',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: ['Conhecimento', 'Paixão', 'Credibilidade', 'Lealdade', 'Determinação', 'Gestão', 'Propósito'],
           datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: 'rgba(0, 193, 240, .5)',
+              label: 'Pontuação',
+              data: [conhecimento, paixao, credibilidade, lealdade, determinacao, gestao, proposito],
+              backgroundColor: 'rgba(0, 193, 240, .4)',
               borderColor: '#00C1F0',
               borderWidth: 4,
           }]
       },
   });
   }
-
-  React.useEffect(() => (
-    get()
-  ), [])
 
   return (
     <>
@@ -546,7 +545,7 @@ const App = () => {
           <Button onClick={handleStart}>Começar!</Button>
         </form>
       </div>
-      <div className='navegacao' style={start ? {display: 'flex'} : {display: 'none'}}>
+      <div className='navegacao questions' style={start ? {display: 'flex'} : {display: 'none'}}>
         {perguntas.map((pergunta, index) => (
           <Radio
             active={slide === index}
@@ -562,7 +561,7 @@ const App = () => {
           <p>{perguntas[slide].categoria.nome}</p>
         </div>    
       </div>
-      <nav className='navegacao' style={start ? {display: 'flex'} : {display: 'none'}}>
+      <nav className='navegacao pass' style={start ? {display: 'flex'} : {display: 'none'}}>
         <button className='cta' onClick={handleClick}>Anterior</button>
         <button className='cta' onClick={handleClick}>Próxima</button>
       </nav>
@@ -578,7 +577,7 @@ const App = () => {
           <Button>Ver Resultado</Button>
         </form>
       </div>
-      <div className='resultado animate' style={result ? {display: 'none'} : {display: 'block'}} data-anime='left'>
+      <div className='resultado animate' style={result ? {display: 'block'} : {display: 'none'}} data-anime='left'>
         <div className='resultado-head'>
           <div>
             <h2>Teste finalizado</h2>

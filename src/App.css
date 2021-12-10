@@ -372,7 +372,10 @@ body {
   [data-anime='top'].animate {
     animation: top .5s forwards;
   }
-    
+
+  .questions input {
+      flex-shrink: 0;
+  }
     
   @keyframes down {
       0% {
@@ -418,3 +421,87 @@ body {
       }
   }
 
+@media (max-width: 1270px) {
+    .pergunta-box {
+        width: 100%;
+        padding: 40px;
+    }
+    #root {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 880px) {
+    .questions {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 540px) {
+    .pass {
+        flex-direction: column;
+    }
+    .pass .cta:last-child {
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+    .pass .cta {
+        align-self: flex-start;
+    }
+}
+
+@media (max-width: 973px) {
+    .resultado ul {
+        justify-content: center;
+    }
+    .resultado ul li {
+        width: 300px;
+    }
+}
+
+@media (max-width: 630px) {
+    .resultado-head {
+        flex-direction: column;
+    }
+    .resultado-head div:last-child {
+        margin-top: 40px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    .resultado ul li {
+        width: 100%;
+    }
+}
+
+@media (max-width: 800px) {
+    .text, .inicio form, .lead form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 520px) {
+    .button {
+        padding: 15px 40px;
+    }
+    .text h2, .resultado-head h2 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 460px) {
+    .categoria-resultado h3 {
+        display: block;
+        word-break: break-all;
+        width: 100%;
+    }
+}
+
+@media (max-width: 370px) {
+    .pergunta-box {
+        padding: 40px;
+    }
+}
